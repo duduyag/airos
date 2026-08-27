@@ -72,37 +72,99 @@
       display: block;
     }
 
-    .language-nav {
+    .language-picker {
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
-      justify-content: flex-end;
-      gap: 8px;
+      gap: 10px;
+      padding: 6px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #f7fbfd;
+      box-shadow: 0 10px 28px rgba(17, 24, 58, 0.08);
+    }
+
+    .language-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 0 8px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .language-label::before {
+      content: "A";
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 7px;
+      color: var(--white);
+      background: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .language-nav {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(82px, 1fr));
+      align-items: stretch;
+      gap: 4px;
     }
 
     .language-nav button {
       font: inherit;
       cursor: pointer;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 7px 12px;
-      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      min-height: 38px;
+      border: 0;
+      border-radius: 12px;
+      padding: 8px 10px;
+      font-size: 13px;
       color: var(--navy);
-      background: var(--white);
+      background: transparent;
       white-space: nowrap;
+      transition: background 160ms ease, color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .language-code {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 28px;
+      height: 22px;
+      border-radius: 7px;
+      background: rgba(22, 109, 154, 0.1);
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0;
     }
 
     .language-nav button:hover,
-    .language-nav button:focus,
-    .language-nav button.is-active {
-      border-color: var(--cyan);
-      outline: 2px solid rgba(32, 174, 205, 0.18);
-      outline-offset: 2px;
+    .language-nav button:focus {
+      background: #e9f8fb;
+      outline: 2px solid rgba(32, 174, 205, 0.28);
+      outline-offset: 1px;
     }
 
     .language-nav button.is-active {
-      background: #e9f8fb;
+      color: var(--white);
+      background: var(--navy);
+      box-shadow: 0 8px 18px rgba(17, 24, 58, 0.2);
       font-weight: 700;
+    }
+
+    .language-nav button.is-active .language-code {
+      color: var(--navy);
+      background: var(--white);
     }
 
     .hero {
@@ -494,7 +556,17 @@
       }
 
       .language-nav {
-        justify-content: flex-start;
+        width: 100%;
+      }
+
+      .language-picker {
+        align-items: stretch;
+        width: 100%;
+        flex-direction: column;
+      }
+
+      .language-label {
+        padding: 0 4px;
       }
 
       .hero-inner {
@@ -542,6 +614,14 @@
       .button {
         width: 100%;
       }
+
+      .language-nav {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .language-nav button {
+        justify-content: flex-start;
+      }
     }
   </style>
 </head>
@@ -551,12 +631,15 @@
       <a class="brand" href="#he" aria-label="ICD Israel">
         <img src="assets/icd-lab-logo.jpg" alt="ICD Israel International Creative Dental Lab">
       </a>
-      <nav class="language-nav" aria-label="בחירת שפה">
-        <button type="button" class="is-active" data-lang-button="he">עברית</button>
-        <button type="button" data-lang-button="en">English</button>
-        <button type="button" data-lang-button="ru">Русский</button>
-        <button type="button" data-lang-button="ar">العربية</button>
-      </nav>
+      <div class="language-picker" aria-label="בחירת שפה">
+        <span class="language-label">שפה</span>
+        <nav class="language-nav" aria-label="בחירת שפה">
+          <button type="button" class="is-active" data-lang-button="he"><span class="language-code">HE</span><span>עברית</span></button>
+          <button type="button" data-lang-button="en"><span class="language-code">EN</span><span>English</span></button>
+          <button type="button" data-lang-button="ru"><span class="language-code">RU</span><span>Русский</span></button>
+          <button type="button" data-lang-button="ar"><span class="language-code">AR</span><span>العربية</span></button>
+        </nav>
+      </div>
     </div>
   </header>
 
