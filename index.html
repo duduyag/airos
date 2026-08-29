@@ -85,6 +85,19 @@
       font-weight: 700;
       white-space: nowrap;
     }
+    .language-code {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 28px;
+      height: 22px;
+      border-radius: 7px;
+      background: rgba(31, 146, 176, 0.12);
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
     .language-nav {
       display: grid;
       grid-template-columns: repeat(4, minmax(70px, 1fr));
@@ -100,6 +113,10 @@
       font: inherit;
       font-size: 13px;
       cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
     }
     .language-nav button:hover,
     .language-nav button:focus {
@@ -112,6 +129,10 @@
       background: var(--navy);
       font-weight: 800;
       box-shadow: 0 8px 18px rgba(17, 24, 58, 0.2);
+    }
+    .language-nav button.is-active .language-code {
+      color: var(--navy);
+      background: var(--white);
     }
 
     .hero {
@@ -454,6 +475,50 @@
       .topbar-inner,
       .hero-inner,
       main { width: min(100% - 24px, 1160px); }
+      .topbar-inner {
+        min-height: 60px;
+        flex-direction: row;
+        align-items: center;
+        padding: 8px 0;
+        gap: 10px;
+      }
+      .brand {
+        gap: 7px;
+        font-size: 15px;
+      }
+      .brand-mark {
+        width: 34px;
+        height: 34px;
+      }
+      .language-picker {
+        width: auto;
+        flex: 0 0 auto;
+        flex-direction: row;
+        align-items: center;
+        gap: 0;
+        padding: 4px;
+        border-radius: 14px;
+        box-shadow: none;
+      }
+      .language-label,
+      .language-nav button span:last-child {
+        display: none;
+      }
+      .language-nav {
+        width: auto;
+        grid-template-columns: repeat(4, 32px);
+        gap: 3px;
+      }
+      .language-nav button {
+        width: 32px;
+        min-height: 30px;
+        padding: 0;
+        border-radius: 10px;
+      }
+      .language-code {
+        min-width: 24px;
+        height: 22px;
+      }
       h1 { font-size: 38px; }
       .hero p:not(.eyebrow),
       .section-header p,
@@ -472,10 +537,10 @@
       <div class="language-picker" aria-label="בחירת שפה">
         <span class="language-label">שפה</span>
         <nav class="language-nav" aria-label="בחירת שפה">
-          <button type="button" class="is-active" data-lang-button="he">עברית</button>
-          <button type="button" data-lang-button="en">English</button>
-          <button type="button" data-lang-button="ru">Русский</button>
-          <button type="button" data-lang-button="ar">العربية</button>
+          <button type="button" class="is-active" data-lang-button="he"><span class="language-code">HE</span><span>עברית</span></button>
+          <button type="button" data-lang-button="en"><span class="language-code">EN</span><span>English</span></button>
+          <button type="button" data-lang-button="ru"><span class="language-code">RU</span><span>Русский</span></button>
+          <button type="button" data-lang-button="ar"><span class="language-code">AR</span><span>العربية</span></button>
         </nav>
       </div>
     </div>
